@@ -1,0 +1,71 @@
+
+\section{Index Operation}
+\subsection{Index Insertion}
+\vspace{-0.2cm}
+For index insertion with index value V, a node need to judge if it need to modify index table. If the node store the
+index of value V, it will update the incremental cryptography of index value V for query validation. Insert operation
+consists of steps shown in Algorithm 1: Line 6-judge if the node needs to store the index value. Line 7-add index entry
+into index table. Line 8 to line 9 -update the incremental cryptography of index value V. Since each node is store all
+data of the system. Modify of index will not cause distributed transactions which is important to a distributed system.
+
+\SetKwProg{Fn}{\underline{Function}}{}{end}
+%        \newcommand{\forcond}{$i=0$ \KwTo $n$}
+\SetKwFunction{localindexconstruct}{IndexInsertion}
+%\SetAlgorithmName{Figure}{}
+\LinesNumbered
+%           \newcommand{\fortol}{$i=0$ \KwTo $L$}
+%           \newcommand{\fortok}{$j=1$ \KwTo $k$}
+\vspace{-0.5cm}
+\begin{algorithm}[htb]
+	\SetAlgoLined
+	\caption{Index Insertion}%
+	Let $H$ denote a hash map of incremental crypto of index value\;
+	Let $S$ denote value of key V in hash map\;
+	Let $N$ denote the number of index partition\;
+	Let $ID$ denote the number of node\;
+	%\Fn(\tcc*[h]{handle request for index records}){\indexrequest{range}}
+	\Fn{\localindexconstruct{index\_value,rowkey}}{	
+		\tcc*[h]{local index construction}
+		
+		\If{$ID==hash_value(value)$}
+		{
+			$add_index(value,rowkey)$\;
+			$S=H.get(value)$\;
+			$S.add_incremental(rowkey)$\;
+		}
+	}
+\end{algorithm}
+
+
+\subsection{Index Deletion & Update}
+\vspace{-0.2cm}
+For index deletion with index value V, a node need to judge if it need to modify the index table. If the node store
+the index of value V, it will update the incremental cryptography of index value V for query validation. Insert operation
+consists of steps shown in Algorithm 1: Line 2-judge if the node needs to store the index value. Line 3 to Line 4-delete
+index entry from index table. Since each node is store all data of the system. Modify of index will not cause distributed transactions which is important to a distributed system.
+
+\SetKwProg{Fn}{\underline{Function}}{}{end}
+%        \newcommand{\forcond}{$i=0$ \KwTo $n$}
+\SetKwFunction{localindexconstruct}{IndexDeletion}
+%\SetAlgorithmName{Figure}{}
+\LinesNumbered
+%           \newcommand{\fortol}{$i=0$ \KwTo $L$}
+%           \newcommand{\fortok}{$j=1$ \KwTo $k$}
+\vspace{-0.5cm}
+\begin{algorithm}[htb]
+	\SetAlgoLined
+	\caption{Index Deletion}%
+
+	%\Fn(\tcc*[h]{handle request for index records}){\indexrequest{range}}
+	\Fn{\localindexconstruct{index\_value,rowkey}}{	
+		\tcc*[h]{delete index}
+		
+		\If{$ID==hash_value(value)$}
+		{
+			$delete_index(value,rowkey)$\;
+			$S=H.get(value)$\;
+			$delete_incremental(S,rowkey)$\;
+		}
+	}
+\end{algorithm}
+

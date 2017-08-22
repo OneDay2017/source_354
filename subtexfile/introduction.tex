@@ -1,0 +1,37 @@
+\section{Introduction}
+\vspace{-0.2cm}
+Recently, block chain is becoming more and more popular
+for de-centered application, such as Bitcoin, Ethereum and
+Hyperledger. These systems tolerate the Byzantine General
+Problem, which means they can guarantee the correctness
+of system even when these are several bad nodes in the system. In practice, these systems are indeed required for applications such as decentralized currencies, tracking use of
+charitable funds and Intelligent contract.
+In these systems, data is stored in database. These systems use consensus algorithm such as PBFT, PoW and PoS
+for consensus before querying or modifying the state of the
+system. Applications interact with the system using intelligent contract which is stored on each node(store procedure).
+The system must scan the whole data set distributed in order to answer queries on non-primary key attributes. With
+the increment of size of data, query performance will become worser. In practice, building a secondary index is a
+popular solution to decrease response time of the queries
+on non-primary key attributes. In block chain systems, all
+data are stored on each node, building indexes on a single
+node will occupy lots of storage space. What’s more, single
+node is not able to provide service for concurrent business
+query. To the best of our knowledge, there are no approach
+for distributed secondary index on block chain. The major
+difficulties include (1) (2)
+
+We have made the following contributions in this paper:
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\item
+ ssssssssssss
+\item
+  sssssssssssssssssss
+\item
+ sssssssssssssssssss
+  %the approach is able to efficiently do bulk loading of index by taking rational use of the resources of cluster and guarantee the load balance of secondary index.
+\end{itemize}
+
+The rest of paper is organized as follows: Section 2 introduces background knowledge related to our work. Section 3 gives an overview of index construction. Discussion of details of bulk loading is in Section 4. We then provide an evaluation of the approach in Section 5. Finally, we describe related work in Section 6, and conclude our paper in Section 7.
+
+\vspace{-0.2cm}

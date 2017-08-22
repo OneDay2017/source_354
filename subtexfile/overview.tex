@@ -1,0 +1,48 @@
+
+\section{Index Structure}
+\vspace{-0.2cm}
+In this section, a general process of secondary index construction will be described. The procedure of index construction has three phases: (1) Initialization phase, preparing for the start of the index construction. (2) Bulk loading phase, creating uniform index partition. (3) Index termination phase, implementing the replication of index partitions. The Figure 3 shows the more details on above three phases.
+The more explanations on process of index construction will be described as follows.
+
+
+ %As mentioned before, index is organized as a table.
+%The critical points on index bulk loading are generating uniform partitions for index data in order to guarantee good balancing for query in distributed environment.
+%The essence of index construction is to construct partitions of index table.
+%The main idea of our approach is first dividing ranges of index partitions and then allocate ranges to data nodes to construct index partitions in a distributed way. We use  \emph{equal-depth histogram} to capture data distribution for good load balancing of query processing %in order to avoid the unnecessary network overhead between data nodes.
+%As is shown in Figure 4.
+\vspace{-0.2cm}
+\subsection{Initialization Phase}
+When receiving  the command of creating index, the system enters the initialization phase. In this phase, the system waits for a time point when the system reaches a global consistent data version $V$. After the time point, modifications of indices will be maintained in the in-memory store. Since modifications of indices and data tables are maintained in the in-memory store, constructing indices on data version $V$ will guarantee the consistency of indices and data tables without blocking transactions. As is mentioned in Section 2, after data merge processing, data in the old in-memory store is merged with disk stores, modifications of system are maintained in the new in-memory store. Hence, the completion of the merge processing means that initialization phase finished.
+
+%and new partitions of tables are generated.  %in our implementation
+\vspace{-0.2cm}
+\subsection{Bulk Loading Phase}
+The system will complete the construction of index partitions in this phase. Furthermore, the construction of the index is divided into three stages: local index construction, balanced index partition division and global index construction. In the first stage, each data node builds its own local index and sends statistic information of search key to the coordinator. In the second stage, the coordinator generates multiple uniform ranges on search keys based on statistic information from data nodes, and sends the ranges to corresponding data nodes. In the third stage, data nodes receive ranges from the coordinator and create index partitions by shuffling data. Algorithm 1 is the main program. Algorithm 1 calls local index construction routine (Algorithm 2), index partition division routine (Algorithm 3) and global index construction (Algorithm 4) routine in the proper order.
+
+\textbf{Local index construction}.
+The first key task of bulk loading is efficient global sorting on search keys of the secondary index. %It is impossible to handle the whole data set in a single node for a huge amount of data set in distributed environment.
+ %It is very important that how to do global sort on search key of secondary index aiming at reducing data shuffling.
+On the one hand, construction of local index can reduce communication overhead when global sorting on search keys is executed.
+On the other hand, the statistic information denoted by a equi-depth histogram collected on the local index can make partition division more uniform, which can guarantee good balancing for query processing.
+
+
+%Ë÷ÒýµÄ¹ØŒüµãÊÇËÑË÷ÂëÉÏµÄÅÅÐò£¬·Ö²ŒÊœµÄÅÅÐò£¬ ÐèÒªÏÈŸÖ²¿ÓÐÐò£¬
+
+%Line 2 to 19 describes the process of local index construction.
+%The framework constructs ordered runs called $local\_index$  which is ordered by primary key of index for each partition of data table. By constructing $local\_index$, scanning full data table can be avoided when SNs shuffle for index records. For each $local\_index$, an equal-depth histogram is sampled to acquire distribution info of index records. Each node will report $local\_index$ info and histograms to Coordinator after local index construction.
+
+\textbf{Balanced index partition division}.
+If the system wants to get uniform index divisions, the coordinator must understand the distributions of search keys on the whole data set and the number of index partitions. So, statistic information received from data nodes is summarized at the coordinator node. And the the number of index partitions is computed. Finally, the coordinator uniformly divides the index ranges according to the number of index partitions and sends the ranges to corresponding data nodes.
+%After local index construction, Coordinator will get histograms of all $local\_indexes$. Then the coordinator will divide index partitions according to distribution info of index records. Each partition is denoted by range$(start\_key,end\_key]$. After the division, ranges of index partitions are allocated to SNs to construct index partitions. The process of partition division is shown from line 10 to 14.
+
+\textbf{Global index construction}.
+ The data nodes are executors of global index construction. The data node communicates with other data nodes according to index ranges received from the coordinator to create index partitions in the global search key order.
+ %During global index construction, SNs may get two types of info. One is partition ranges for constructing index partition. To handle this request,for each range, a node will shuffle with other nodes for index records to construct the index partition.% as is shown from line 15 to 22.
+%Another is a request with a partition range for index records, a nodes will search $local\_indexes$ on it for index records within the range and response to the requesting node,
+%%as is show from line 23 to 27.
+%When all the ranges a node received are handled, the node will report index partition info to coordinator.
+\vspace{-0.2cm}
+\subsection{Index Termination}
+ After the bulk loading phase, the coordinator will schedule the task for replication of the index for high availability of the index. %Since index is organized as a table,
+The replication mechanism of index table is the same to the original table since an index is organized as an ordinary table. Index construction is completely finished after index replication. And then the index is available for query.
+%by taking advantage of the replication mechanism of system 

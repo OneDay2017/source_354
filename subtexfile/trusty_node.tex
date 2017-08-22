@@ -1,0 +1,14 @@
+\section{Trusty Node}
+\vspace{-0.2cm}
+In a PBFT-based system, at most n/3 nodes are faulty. Since index is distributed on several nodes, nodes storing
+index partitions may be faulty, it may not return result, or return error message. In order to get correct result by index,
+a naive approach is first to construct index on each node, and then handle a query with the PBFT protocol. However the
+approach need to store index on all nodes and each query need n2 times of network communication. In our approach, we use a trusty node for data validation. For each query, the trusty node checks the result from index partition. If the result is correct after validating, the trusty node will return result,else it will search its own local index for response. By adding a trusty node, we avoid acquiring result by PBFT protocol which takes much network resource, which means our approach is more efficient.
+
+Since the trusty node need to check the result returned by other nodes, it must be contain all index value. For each insertion of index, the PBFT cluster can apply change to the state machine if and on if the change has been made to the
+trusty node. The property of insertion guarantee the trusty node to contain all the changes to the state machine. In
+order check the result of query quickly, we use the technology of incremental cryptography. For each index entry, we
+maintain a cryptography for it, for modifications of index, we modify the cryptography for that index entry. For validating the result of query by index, the trusty just need to calculate the cryptography of returned result instead searching local index. If the cryptography of returned result is the same as the cryptography on trusty node, the result can be
+returned to client, else the trusty node need to search local index for response.
+
+

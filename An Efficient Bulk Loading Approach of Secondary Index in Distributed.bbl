@@ -1,0 +1,74 @@
+\begin{thebibliography}{10}
+
+\bibitem{web:HBase}
+{Apache HBase website}.
+\newblock \url{http://hbase.apache.org/}.
+
+\bibitem{web:cedar}
+{CDEAR website}.
+\newblock \url{https://github.com/daseECNU/Cedar/}.
+
+\bibitem{web:levelDB}
+{LevelDB website}.
+\newblock \url{http://leveldb.org/}.
+
+\bibitem{web:OceanBase}
+{OceanBase website}.
+\newblock \url{https://github.com/alibaba/oceanbase/}.
+
+\bibitem{web:PHOENIX}
+{PHOENIX website}.
+\newblock \url{http://phoenix.apache.org/}.
+
+\bibitem{web:Huawei-Hadoop}
+{Secondary Index for HBase}.
+\newblock \url{https://github.com/Huawei-Hadoop/hindex}.
+
+\bibitem{web:SOLR}
+{SOLR website}.
+\newblock \url{http://lucene.apache.org/solr/}.
+
+\bibitem{web:Sysbench}
+{Sysbench website}.
+\newblock \url{http://dev.mysql.com/downloads/benchmarks.html}.
+
+\bibitem{alsubaiee2014asterixdb}
+S.~Alsubaiee and A.~et~al.
+\newblock Asterixdb: A scalable, open source bdms.
+\newblock {\em Proceedings of the VLDB Endowment}, 7(14):1905--1916, 2014.
+
+\bibitem{brewer2012pushing}
+E.~Brewer.
+\newblock Pushing the cap: Strategies for consistency and availability.
+\newblock {\em Computer}, 45(2):23--29, 2012.
+
+\bibitem{chang2008bigtable}
+F.~Chang, J.~Dean, and G.~et~al.
+\newblock Bigtable: A distributed storage system for structured data.
+\newblock {\em ACM Transactions on Computer Systems (TOCS)}, 26(2):4, 2008.
+
+\bibitem{Dean2004MapReduce}
+J.~Dean and S.~Ghemawat.
+\newblock Mapreduce: Simplified data processing on large clusters.
+\newblock In {\em Conference on Symposium on Opearting Systems Design \&
+  Implementation}, pages 107--113, 2004.
+
+\bibitem{o1996log}
+P.~O’Neil, E.~Cheng, D.~Gawlick, and E.~O’Neil.
+\newblock The log-structured merge-tree (lsm-tree).
+\newblock {\em Acta Informatica}, 33(4):351--385, 1996.
+
+\bibitem{tan2014diff}
+W.~Tan, S.~Tata, Y.~Tang, and L.~L. Fong.
+\newblock Diff-index: Differentiated index in distributed log-structured data
+  stores.
+\newblock In {\em EDBT}, pages 700--711, 2014.
+
+\bibitem{zou2010ccindex}
+Y.~Zou, J.~Liu, S.~Wang, L.~Zha, and Z.~Xu.
+\newblock Ccindex: A complemental clustering index on distributed ordered
+  tables for multi-dimensional range queries.
+\newblock In {\em IFIP International Conference on Network and Parallel
+  Computing}, pages 247--261. Springer, 2010.
+
+\end{thebibliography}

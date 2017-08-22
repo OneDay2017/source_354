@@ -1,0 +1,4 @@
+\section{Index Structure}
+\vspace{-0.2cm}
+A common structure of an index is an index table, which is partitioned and stored on a cluster of nodes as an ordinary one. A record in the index table is combination of an index column \emph{(searchkey)} and a primary key column of the data table, like as  \emph{(searchkey,primarykey)}. Figure 2 shows an example of the index. The primary key of the item table is column \emph{ItemId}. If we create an index on the column \emph{Sale}, the schema of index table is shown in Figure 2. A query is executed by accessing the index table to get the primary key of the data table, and then getting results from the data table according to the aforementioned primary key. Certainly, we also permit users to build the covering index, which is an index that contains all, and possibly more, the columns that you need for your query.We use a common partition strategy of hash for index partition.
+

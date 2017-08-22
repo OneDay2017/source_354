@@ -1,0 +1,113 @@
+\section{Query}
+\vspace{-0.2cm}
+In order to get correct data, the client need to send a
+query request to the block chain, which means a query request need N 2 times of network communication. By adding the trusty node, a query just need 2 times of network communication. The query operation of the index consists of three part: query route, index query and query validation.
+
+\SetKwProg{Fn}{\underline{Function}}{}{end}
+%        \newcommand{\forcond}{$i=0$ \KwTo $n$}
+\SetKwFunction{localindexconstruct}{IndexUpdate}
+%\SetAlgorithmName{Figure}{}
+\LinesNumbered
+%           \newcommand{\fortol}{$i=0$ \KwTo $L$}
+%           \newcommand{\fortok}{$j=1$ \KwTo $k$}
+\vspace{-0.5cm}
+\begin{algorithm}[htb]
+	\SetAlgoLined
+	\caption{Index Update}%
+	
+	%\Fn(\tcc*[h]{handle request for index records}){\indexrequest{range}}
+	\Fn{\localindexconstruct{old\_value,new\_value,rowkey}}{	
+		\tcc*[h]{update index}
+		
+		\If{$ID==hash_value(old_value)$}
+		{
+			$delete_index(old_value,rowkey)$\;
+			$S=H.get(old_index_value)$\;
+			$S.delete_incremental(old_index_value)$\;
+		}
+	
+	    \If{$ID==hash_value(new_index_value)$}
+	    {
+	    	$add_index(new_value,rowkey)$\;
+	    	$S=H.get(new_index_value)$\;
+	    	$S.add_incremental(rowkey)$;
+    	}
+		
+	}
+\end{algorithm}
+
+
+
+Algorithm 4 describe the process of query route, the trusty node will send the request to the node storing the index entry. The node storing the index entry will search local index and return the result along with the incremental cryptography, the trusty node will check the cryptography for validation.
+
+
+
+When a node receive a request for query of index, it will search local index for query. Since index is distributed on
+several node, each node maintain a partition of index, the query process is efficient. Line 2 to line 6 in Algorithm5
+describe the process of query on a node.
+
+\SetKwProg{Fn}{\underline{Function}}{}{end}
+%        \newcommand{\forcond}{$i=0$ \KwTo $n$}
+\SetKwFunction{localindexconstruct}{IndexQuery}
+%\SetAlgorithmName{Figure}{}
+\LinesNumbered
+%           \newcommand{\fortol}{$i=0$ \KwTo $L$}
+%           \newcommand{\fortok}{$j=1$ \KwTo $k$}
+\vspace{-0.5cm}
+\begin{algorithm}[htb]
+	\SetAlgoLined
+	\caption{Index Query}%
+	
+	%\Fn(\tcc*[h]{handle request for index records}){\indexrequest{range}}
+	\Fn{\localindexconstruct{value}}{	
+		\tcc*[h]{query by index}
+		
+		\If{$ID==hash_value(value)$}
+		{
+			$S=H.get(value)$\;
+			$V=get_rowkey(value)$\;
+		}
+	    $send_result(value,V)$\;
+	}
+\end{algorithm}
+
+
+Since a node storing an index partition may be faulty, the trusty node will check the response from the node. If the cryptography of result is not the same as the result on the trusty node, the trusty node will search local index for
+response. The validation process handled in the following way: the trusty node will first calculate the cryptography of
+the return result of an index value, then it will compare the cryptography with the cryptography of its own for the value.
+If the two cryptographies are same, the result is correct, else, the result is wrong. Line 2 to line 3 of Algorithm6 describe
+the process of validation and line 7 to line 10 describe the process of searching local index of the trusty node when the
+return result is wrong.
+ 
+As we can see, the trusty node just need to check the result and search local index when the result is wrong.
+
+
+\SetKwProg{Fn}{\underline{Function}}{}{end}
+%        \newcommand{\forcond}{$i=0$ \KwTo $n$}
+\SetKwFunction{localindexconstruct}{QueryValidation}
+%\SetAlgorithmName{Figure}{}
+\LinesNumbered
+%           \newcommand{\fortol}{$i=0$ \KwTo $L$}
+%           \newcommand{\fortok}{$j=1$ \KwTo $k$}
+\vspace{-0.5cm}
+\begin{algorithm}[htb]
+	\SetAlgoLined
+	\caption{Query Validation}%
+	
+	%\Fn(\tcc*[h]{handle request for index records}){\indexrequest{range}}
+	\Fn{\localindexconstruct{value,V}}{	
+		\tcc*[h]{validate result of query result}
+		
+		$S=H.get(value)$\;
+		$correct=validate(S,V)$\;
+		\If{correct}
+		{
+			$return_result V$\;
+		}
+	    \Else
+	    {
+	    	$V=search_local_index(value)$\;
+	    	$return_result V$\;
+	    }
+	}
+\end{algorithm}

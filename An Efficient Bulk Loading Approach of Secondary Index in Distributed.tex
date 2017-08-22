@@ -1,0 +1,120 @@
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+\usepackage{clrscode}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{indentfirst}
+%\usepackage[boxed,commentsnumbered]{algorithm2e}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{tikz,pgfplots}
+\usepackage{cite}
+\urldef{\mailsa}\path|{yanchaozhu}@stu.ecnu.edu.cn, |
+\urldef{\mailsb}\path|{zhzhang,pcai,wnqian,ayzhou}@sei.ecnu.edu.cn|
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+
+\begin{document}
+\pagestyle{empty}
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{A Distributed Fault-tolerant Secondary Index on
+	PBFT-based Block Chain
+}
+
+
+\urldef{\mailsa}\path|{yczhu}@stu.ecnu.edu.cn, |
+\urldef{\mailsb}\path|{zhzhang,pcai,wnqian,ayzhou}@sei.ecnu.edu.cn|
+
+
+% a short form should be given in case it is too long for the running head
+\titlerunning{Bulk Loading}
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+%
+% NB: a more complex sample for affiliations and the mapping to the
+% corresponding authors can be found in the file "llncs.dem"
+% (search for the string "\mainmatter" where a contribution starts).
+% "llncs.dem" accompanies the document class "llncs.cls".
+%
+\author{Yanchao Zhu \inst{1}
+	\and Zhao Zhang \thanks{Corresponding author.} \inst{1,2} \and Peng Cai \inst{1} \and Weining Qian \inst{1} \and\\
+	Aoying Zhou \inst{1}}
+%
+\authorrunning{Yc. Zhu, Z. Zhang, P. Cai, et al}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address
+% unless you accept that it will be published
+\institute{ School of Data Science and Engineering, 
+	\and School of Computer Science and Software Engineering, \\ East China Normal University \\
+	\mailsa\\
+	\mailsb\\
+}
+
+%
+% NB: a more complex sample for affiliations and the mapping to the
+% corresponding authors can be found in the file "llncs.dem"
+% (search for the string "\mainmatter" where a contribution starts).
+% "llncs.dem" accompanies the document class "llncs.cls".
+\toctitle{Lecture Notes in Computer Science}
+\tocauthor{Authors' Instructions}
+\maketitle
+%52151500009@ecnu.cn ÃÜÂë:stayfoolish123
+%https://cmt.research.microsoft.com/DASFAA2017/
+
+
+\begin{abstract}
+
+
+
+\keywords{}
+\end{abstract}
+
+
+\input{subtexfile/introduction}
+\input{subtexfile/background}
+\input{subtexfile/index_structure}
+\input{subtexfile/index_operation}
+\input{subtexfile/query}
+\input{subtexfile/trusty_node}
+\input{subtexfile/experiment}
+\vspace{-0.2cm}
+\section{Related Work}
+
+
+\section{Conclusion}
+
+\vspace{-0.3cm}
+\bibliographystyle{abbrv}
+\bibliography{indexref}
+
+\end{document} 
