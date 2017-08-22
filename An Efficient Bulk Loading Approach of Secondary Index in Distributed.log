@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.12.12)  22 AUG 2017 08:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.12.12)  22 AUG 2017 13:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -860,31 +860,19 @@ Missing character: There is no ™ in font cmr10!
 
 
 {c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) (./subtexfile/
-index_operation.tex
-! Misplaced alignment tab character &.
-<argument> Index Deletion &
-                            Update
-l.40 \subsection{Index Deletion & Update}
-                                         
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-[2]) (./subtexfile/query.tex [3]) (./subtexfile/trusty_node.tex [4])
+index_operation.tex [2])
+(./subtexfile/query.tex [3]) (./subtexfile/trusty_node.tex [4] [5])
 (./subtexfile/experiment.tex)
 (./An Efficient Bulk Loading Approach of Secondary Index in Distributed.bbl
-[5]
 Missing character: There is no â in font cmr9!
 Missing character: There is no € in font cmr9!
 Missing character: There is no ™ in font cmr9!
 Missing character: There is no â in font cmr9!
 Missing character: There is no € in font cmr9!
 Missing character: There is no ™ in font cmr9!
-) [6]
-(./An Efficient Bulk Loading Approach of Secondary Index in Distributed.aux) )
+)
+[6] (./An Efficient Bulk Loading Approach of Secondary Index in Distributed.aux
+) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
@@ -896,7 +884,7 @@ Here is how much of TeX's memory you used:
  27758 multiletter control sequences out of 15000+600000
  11965 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,15n,96p,1017b,18218s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,96p,1095b,18218s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
 10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c
 :/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/texlive/
@@ -912,7 +900,7 @@ st/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2016/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti9.pfb><c:/texlive/2016/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmtt9.pfb>
 Output written on "An Efficient Bulk Loading Approach of Secondary Index in Dis
-tributed.pdf" (6 pages, 199853 bytes).
+tributed.pdf" (6 pages, 203276 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  62 compressed objects within 1 object stream

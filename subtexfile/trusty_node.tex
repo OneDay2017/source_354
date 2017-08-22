@@ -12,3 +12,15 @@ maintain a cryptography for it, for modifications of index, we modify the crypto
 returned to client, else the trusty node need to search local index for response.
 
 
+\subsection{Combination of PBFT \& RAFT}
+\vspace{-0.2cm}
+
+As is mentioned before, in order to check the returned result of query, the PBFT cluster can not apply changes to state machine before receiving acknowledgement from the trusty node. However, if the trusty node crashes, the system will block until recovery of the trusty node which is intolerant. Thus, the system need to provide service even when the trusty node crashes. Consider the situation in a blockchain, some nodes are high-level and some nodes are common, common nodes may send wrong messages for profit while high-level nodes are trusty and do not send wrong messages. Consider the property, we divide nodes in a blockchain into two partitions, on partition use the consensus protocol of PBFT and other nodes use the protocol of RAFT. The division of nodes in a blockchain on the one hand can improve the performance of blcokchain, on the other hand, since high-level nodes are trusty and can be organized as a RAFT cluster, it can play the role of trusty node in section 6.
+
+In order to guarantee the consistency of the state machine on each node, we need to combine nodes using protocol of RAFT and nodes using protocol of PBFT. In the following of this section, we will show the protocol combine PBFT and RAFT.
+
+\subsubsection{The Algorithm}
+
+The key point of combining PBFT with RAFT is to apply changes to PBFT and RAFT in an atomic way. In order to achieve the goal, we extend PBFT to commit if and only if RAFT has applied changes. We extend RAFT leader to send log according to the sequence number in PBFT, the leader og RAFT does not send out an log until it has received enough commit info from PBFT.
+
+The algorithm works roughly as follows:
